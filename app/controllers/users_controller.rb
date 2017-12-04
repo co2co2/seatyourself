@@ -1,5 +1,30 @@
 
 class UsersController < ApplicationController
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
+
+    if @user.save
+      flash[:notice] = "You have been successfully REBORN!!!!"
+      redirect_to root_url
+      flash[:notice] = "You have been successfully REBORN!!!!"
+#      <% flash.each do |name, msg| -%>
+
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
