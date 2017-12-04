@@ -18,7 +18,7 @@ Restaurant.create(name: "Polar Bear Creamery", address: "123 Cold Rd", capacity:
 Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000)
 Restaurant.create(name: "McDouble", address: "200 Glass Ave", capacity: 100)
 Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20)
-Restuarant.create(name: "Grill House", address: "8 Meat Heaven Lane", capactiy: 100)
+Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100)
 
 
 Reservation.create(user_id: 1, restaurant_id: 1, party_size: 2, date: Date.new(2017,12,10))
