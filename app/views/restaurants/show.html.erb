@@ -7,7 +7,7 @@
 
 <h3><%@restaurant.reservations.each_with_index do |r,i|%></h3>
 <% if r.id != nil %>
-Date <%= i+1 %>: <%= r.date %> <br><%= link_to("Edit", edit_reservation_path(r.id)) %>
+Date <%= i+1 %>: <%= r.date %> <%= link_to("Edit", edit_reservation_path(r.id)) %>
 <% end  %>
 <br>
 <% end %>

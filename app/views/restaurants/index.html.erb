@@ -1,10 +1,9 @@
-<h1>Restaurants</h1>
+<h1>SeatYourself</h1>
 
-<%= link_to('New Restaurant', new_restaurant_path) %>
-<br>
+<%= link_to('New Restaurant', new_restaurant_path) %><br>
+
 <% @restaurants.each do |restaurant| %>
 <h3><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></h3>
-<p><%= restaurant.address %></p>
-<%= restaurant.capacity %>
+
 <br>
 <%end %>
