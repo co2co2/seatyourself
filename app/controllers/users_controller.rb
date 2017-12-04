@@ -1,21 +1,19 @@
+
 class UsersController < ApplicationController
-
-  def index
-  end
-
-  def show
-  end
-
   def new
+    @user = User.new
   end
 
   def create
-  end
+    @user = User.new
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
 
-  def edit
+    if @user.save
+      redirect_to root_url
+    else
+      render :new
+    end
   end
-
-  def destroy
-  end
-
 end
