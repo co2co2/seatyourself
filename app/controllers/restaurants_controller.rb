@@ -28,12 +28,13 @@ class RestaurantsController < ApplicationController
     end
 
     def show
-      @restaurant = restaurant.find(params[:id])
-      
+      @restaurant = Restaurant.find(params[:id])
+      @reservation = @restaurant.reservations.build
+
     end
 
     def update
-      @restaurant = restaurant.find(params[:id])
+      @restaurant = Restaurant.find(params[:id])
       @restaurant.name = params[:restaurant][:name]
       @restaurant.address = params[:restaurant][:address]
       @restaurant.capacity = params[:restaurant][:capacity]
@@ -48,7 +49,7 @@ class RestaurantsController < ApplicationController
 
 
     def destroy
-      @restaurant = restaurant.find(params[:id])
+      @restaurant = Restaurant.find(params[:id])
       @restaurant.destroy
       flash[:notice] = "restaurants deleted!"
       redirect_to root_url
