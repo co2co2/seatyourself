@@ -13,12 +13,15 @@
 <%= form_for [@restaurant, reservation] do |f| %>
 
     <div class="field">
+
+
       <%= f.label :date %><br />
       <%= f.date_field :date, min:Date.today %>
 <p>
       <%= f.label :party_size %><br />
       <%= f.number_field :party_size, min: 1 %>
 </p>
+
     </div>
     <div class="actions">
       <%= f.submit %>
