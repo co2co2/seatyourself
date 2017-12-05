@@ -45,7 +45,7 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     if @reservation.save
       flash[:notice] = "reservation is successfully created!"
-      redirect_to edit_reservation_url(@reservation)
+      redirect_to restaurant_path(@restaurant)
     else
       render :edit
 
