@@ -1,10 +1,10 @@
 class ReservationsController < ApplicationController
   before_action :ensure_logged_in
-  before_action :load_reservation
+  before_action :load_reservation, except: [:create]
   before_action :ensure_user_owns_reservation,only: [:edit, :update, :destroy]
 
   def load_reservation
-      @reservation = reservation.find(params[:id])
+      @reservation = Reservation.find(params[:id])
     end
 
   def ensure_user_owns_reservation
@@ -15,12 +15,12 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation = reservation.find(params[:id])
+
     @restaurant = @reservation.restaurant
   end
 
   def create
-    @reservation = reservation.new
+    @reservation = Reservation.new
     @restaurant = @reservation.restaurant
     @reservation.date = params[:reservation][:date]
     @reservation.party_size = params[:reservation][:party_size]
@@ -28,17 +28,16 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
     if @reservation.save
       flash[:notice] = "reservation is successfully created!"
-      redirect_to restaurant_url(@restaurants)
+      redirect_to restaurant_url(params[:restaurant_id])
     else
       render :edit
-
     end
   end
 
 
 
   def update
-    @reservation = reservation.find(params[:id])
+
     @restaurant = @reservation.restaurant
     @reservation.date = params[:reservation][:date]
     @reservation.party_size = params[:reservation][:party_size]
@@ -54,7 +53,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    @reservation = reservation.find(params[:id])
+
     @reservation.destroy
     flash[:notice] = "reservation deleted!"
     redirect_to restaurant_url(@restaurants)
