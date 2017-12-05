@@ -4,6 +4,7 @@ class Reservation < ApplicationRecord
 
   validates :date, :party_size, presence: true
   validates :party_size, numericality: {only_integer: true}
+
   validate :time_cannot_be_earlier_than_now
   validate :restaurant_at_capacity
   validate :within_open_hours
@@ -44,4 +45,5 @@ private
       errors.add(:party_size, "The restaurant is full at that timeslot.")
     end
   end
+
 end
