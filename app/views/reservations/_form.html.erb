@@ -17,6 +17,9 @@
 
       <%= f.label :date %><br />
       <%= f.date_field :date, min:Date.today %>
+
+      <%= f.label :time_slot %><br />
+      <%= f.time_field :time_slot, min:Time.now %>
 <p>
       <%= f.label :party_size %><br />
       <%= f.number_field :party_size, min: 1 %>
