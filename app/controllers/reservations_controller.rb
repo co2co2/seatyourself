@@ -1,14 +1,13 @@
 class ReservationsController < ApplicationController
   before_action :ensure_logged_in
   before_action :load_reservation, except: [:create, :destroy]
-  before_action :ensure_user_owns_reservation, only: [:edit, :update, :destroy]
+  before_action :ensure_user_owns_reservation, only: [:edit, :update]
 
   def load_reservation
       @reservation = Reservation.find(params[:id])
     end
 
   def ensure_user_owns_reservation
-    @reservation = Reservation.find(params[:id])
     unless current_user == @reservation.user
       flash[:notice] = "you are not the right user!"
       redirect_to new_session_url
@@ -54,10 +53,10 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-
+    @reservation = Reservation.find(params[:id])
     @reservation.destroy
     flash[:notice] = "reservation deleted!"
-    redirect_to restaurant_url(@restaurant)
+    redirect_to restaurant_url(params[:restaurant_id])
 
   end
 
