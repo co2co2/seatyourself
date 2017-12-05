@@ -15,7 +15,6 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-
     @restaurant = @reservation.restaurant
   end
 

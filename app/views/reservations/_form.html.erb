@@ -19,7 +19,7 @@
     </p>
     <p>
       <%= f.label :time_slot %><br />
-      <%= f.time_field :time_slot %>
+      <%= f.select :time_slot, timeslots.collect {|t| t.strftime("%I:%M %p")}, {prompt: 'Select a time'} %>
     </p>
     <p>
       <%= f.label :party_size %><br />
