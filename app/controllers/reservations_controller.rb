@@ -19,9 +19,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @reservation = Reservation.new
-    @restaurant = @reservation.restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @reservation.date = params[:reservation][:date]
     d = Date.parse(params[:reservation][:date])
     t = Time.parse(params[:reservation][:time_slot])
@@ -33,7 +32,7 @@ class ReservationsController < ApplicationController
       flash[:notice] = "Reservation is successfully created!"
       redirect_to restaurant_url(params[:restaurant_id])
     else
-      render :edit
+      render 'restaurants/show'
     end
   end
 

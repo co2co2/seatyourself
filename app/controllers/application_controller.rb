@@ -4,22 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   private
 
-  def timeslots
-    restaurant = Restaurant.find(params[:id])
-    timeslot = []
-    openhour = restaurant.open_hour
-    until openhour >= restaurant.close_hour
-      timeslot << openhour
-      openhour += 30.minutes
-    end
-    return timeslot
-  end
-
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :current_user, :timeslots
+  helper_method :current_user
 
   def ensure_logged_in
     unless current_user
