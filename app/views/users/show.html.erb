@@ -1,3 +1,9 @@
+
 <h1> This is You, ID: </h1>
 
-  
+<%= @user.reservations.each_with_index do |r,i|%>
+
+<%= i+1 %>: <%= r.time_slot%> <%= r.restaurant.name %><br>
+<%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
+
+<% end  %>
