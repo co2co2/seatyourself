@@ -13,8 +13,6 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "You have been successfully REBORN!!!!"
       redirect_to root_url
-      flash[:notice] = "You have been successfully REBORN!!!!"
-#      <% flash.each do |name, msg| -%>
 
     else
       render :edit
