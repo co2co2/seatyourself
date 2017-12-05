@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
 
   def ensure_user_owns_reservation
     unless current_user == @reservation.user
-      flash[:notice] = "you are not the right user!"
+      flash[:alert] = "You are authorized to edit this reservation!"
       redirect_to new_session_url
     end
   end
@@ -27,7 +27,7 @@ class ReservationsController < ApplicationController
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
     if @reservation.save
-      flash[:notice] = "reservation is successfully created!"
+      flash[:notice] = "Reservation is successfully created!"
       redirect_to restaurant_url(params[:restaurant_id])
     else
       render :edit
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
     if @reservation.save
-      flash[:notice] = "reservation is successfully created!"
+      flash[:notice] = "Reservation is successfully created!"
       redirect_to restaurant_path(@restaurant)
     else
       render :edit
@@ -55,7 +55,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    flash[:notice] = "reservation deleted!"
+    flash[:notice] = "Reservation deleted!"
     redirect_to restaurant_url(params[:restaurant_id])
 
   end
