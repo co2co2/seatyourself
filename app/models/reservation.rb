@@ -9,7 +9,7 @@ class Reservation < ApplicationRecord
   validate :restaurant_at_capacity
   validate :within_open_hours
 
-private
+
 
   def time_cannot_be_earlier_than_now
     if self.time_slot > Time.now
@@ -20,7 +20,8 @@ private
   end
 
   def within_open_hours
-    if self.time_slot > self.restaurant.open_hour && self.time_slot < self.restaurant.close_hour
+    binding.pry
+    if (self.time_slot > self.restaurant.open_hour) && (self.time_slot < self.restaurant.close_hour)
       return true
     else
       errors.add(:time_slot,"Sorry,the restaurant isn't open at that time.")
@@ -31,14 +32,20 @@ private
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
-    current_reservations = Reservation.where( "time_slot > ? && time_slot < ? ",lower , upper )
+    # binding.pry
+    current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
+
+    #
+    # binding.pry
 
     current_reservations.each do |r|
       seat_available -= r.party_size
     end
+    return seat_available
   end
 
   def restaurant_at_capacity
+    # binding.pry
     if self.party_size  <  self.seat_left
       return true
     else
