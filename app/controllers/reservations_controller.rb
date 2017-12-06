@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
 
   def ensure_user_owns_reservation
     unless current_user == @reservation.user
-      flash[:alert] = "You are authorized to edit this reservation!"
+      flash[:alert] = "You are not authorized to edit this reservation!"
       redirect_to new_session_url
     end
   end
@@ -48,6 +48,7 @@ class ReservationsController < ApplicationController
     @reservation.party_size = params[:reservation][:party_size]
     @reservation.restaurant_id = params[:restaurant_id]
     @reservation.user_id = current_user.id
+
     if @reservation.save
       flash[:notice] = "Reservation is successfully created!"
       redirect_to restaurant_path(@restaurant)
