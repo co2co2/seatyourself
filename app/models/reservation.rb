@@ -7,7 +7,7 @@ class Reservation < ApplicationRecord
 
   validate :time_cannot_be_earlier_than_now
   validate :restaurant_at_capacity
-  validate :within_open_hours
+  # validate :within_open_hours
 
 
 
@@ -20,6 +20,11 @@ class Reservation < ApplicationRecord
   end
 
   def within_open_hours
+puts "***********"
+    puts self.time_slot
+    puts self.restaurant.open_hour
+    puts self.restaurant.close_hour
+    puts  "*******"
     if (self.time_slot > self.restaurant.open_hour) && (self.time_slot < self.restaurant.close_hour)
       return true
     else
@@ -28,15 +33,22 @@ class Reservation < ApplicationRecord
   end
 
   def seat_left
+    puts "***********"
+    puts time_slot
+
+
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
 
-    current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
+    current_reservations = self.restaurant.reservations.where( "time_slot > ? And time_slot < ? ",lower , upper )
+    p current_reservations
 
     current_reservations.each do |r|
       seat_available -= r.party_size
+
     end
+    puts seat_available
     return seat_available
   end
 
