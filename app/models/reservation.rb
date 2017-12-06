@@ -7,9 +7,7 @@ class Reservation < ApplicationRecord
 
   validate :time_cannot_be_earlier_than_now
   validate :restaurant_at_capacity
-  # validate :within_open_hours
-
-
+  validate :within_open_hours
 
   def time_cannot_be_earlier_than_now
     if self.time_slot > Time.now
@@ -44,7 +42,7 @@ class Reservation < ApplicationRecord
       seat_available -= r.party_size
 
     end
-    
+
     return seat_available
   end
 
