@@ -31,7 +31,6 @@ class Reservation < ApplicationRecord
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
-
     current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
 
 
