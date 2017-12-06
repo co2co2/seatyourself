@@ -6,13 +6,13 @@ class Restaurant < ApplicationRecord
     restaurant = self
     timeslot = []
     if restaurant.open_hour > restaurant.close_hour
-      start_time = restaurant.open_hour - 1.day
+      openhour = restaurant.open_hour - 1.day
     else
-      start_time = restaurant.open_hour
+      openhour = restaurant.open_hour
     end
-    until start_time >= restaurant.close_hour
-      timeslot << start_time
-      start_time += 30.minutes
+    until openhour >= restaurant.close_hour
+      timeslot << openhour
+      openhour += 30.minutes
     end
     return timeslot
   end
