@@ -20,7 +20,6 @@ class Reservation < ApplicationRecord
   end
 
   def within_open_hours
-    binding.pry
     if (self.time_slot > self.restaurant.open_hour) && (self.time_slot < self.restaurant.close_hour)
       return true
     else
@@ -32,11 +31,8 @@ class Reservation < ApplicationRecord
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
-    # binding.pry
-    current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
 
-    #
-    # binding.pry
+    current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
 
     current_reservations.each do |r|
       seat_available -= r.party_size
@@ -45,7 +41,6 @@ class Reservation < ApplicationRecord
   end
 
   def restaurant_at_capacity
-    # binding.pry
     if self.party_size  <  self.seat_left
       return true
     else
