@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
       flash[:notice] = "Reservation is successfully created!"
       redirect_to restaurant_url(params[:restaurant_id])
     else
-      render :edit
+      render 'restaurants/show'
     end
   end
 
