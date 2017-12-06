@@ -1,4 +1,39 @@
-<%= render 'form', restaurant: @restaurant, reservation: @reservation %>
+<% if @reservation.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+  <ul>
+    <% @reservation.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= form_for [@restaurant, @reservation] do |f| %>
+
+  <div class="field">
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_field :date, min:Date.today %>
+  </p>
+  <p>
+    <%= f.label :time_slot %><br />
+    <%= @reservation.time_slot.in_time_zone('EST').strftime('%I:%M %p') %><br>
+    <%= f.select :time_slot, @restaurant.timeslots.collect {|t| t.in_time_zone('EST').strftime("%I:%M %p")}, {prompt: 'Select a time'} %>
+  </p>
+  <p>
+    <%= f.label :party_size %><br />
+    <%= f.number_field :party_size, min: 1 %>
+  </p>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+<% end %>
 
 <% if @reservation.errors.any? == false %>
 

@@ -18,10 +18,10 @@ User.create(email: "itsmunchintime@eatme.com", password: "1234")
 
 
 Restaurant.create(name: "Polar Bear Creamery", address: "123 Cold Rd", capacity: 50, open_hour: Time.parse("11:30"), close_hour: Time.parse("18:30"))
-Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000, open_hour: Time.parse("2000-01-01 11:30:00"), close_hour: Time.parse("2000-01-01 22:30:00"))
-Restaurant.create(name: "McDouble", address: "200 Glass Ave", capacity: 100, open_hour: Time.parse("2000-01-01 11:30:00"), close_hour: Time.parse("2000-01-01 22:30:00"))
-Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20, open_hour: Time.parse("2000-01-01 11:30:00"), close_hour: Time.parse("2000-01-01 22:30:00"))
-Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100, open_hour: Time.parse("2000-01-01 11:30:00"), close_hour: Time.parse("2000-01-01 22:30:00"))
+Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
+Restaurant.create(name: "McDouble", address: "200 Glass Ave", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
+Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
+Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
 
 
 Reservation.create(user_id: 13, restaurant_id: 1, party_size: 2, date: Date.new(2017,12,10), time_slot: Time.now - 2.hours)

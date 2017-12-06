@@ -5,7 +5,11 @@ class Restaurant < ApplicationRecord
   def timeslots
     restaurant = self
     timeslot = []
-    openhour = restaurant.open_hour
+    if restaurant.open_hour > restaurant.close_hour
+      openhour = restaurant.open_hour - 1.day
+    else
+      openhour = restaurant.open_hour
+    end
     until openhour >= restaurant.close_hour
       timeslot << openhour
       openhour += 30.minutes
