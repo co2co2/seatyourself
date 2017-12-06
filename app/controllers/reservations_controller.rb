@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
 
   def ensure_user_owns_reservation
     unless current_user == @reservation.user
-      flash[:alert] = "You are authorized to edit this reservation!"
+      flash[:alert] = "You are not authorized to edit this reservation!"
       redirect_to new_session_url
     end
   end

@@ -2,6 +2,7 @@
 <br>
 <h1><%= @restaurant.name %></h1>
 <p><%= @restaurant.address %></p>
+<h4>From <%= @restaurant.open_hour.in_time_zone('EST').strftime('%I:%M %p') %> to <%= @restaurant.close_hour.in_time_zone('EST').strftime('%I:%M %p') %> everyday!</h4>
 
 <br>
 
