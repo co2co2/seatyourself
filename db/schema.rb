@@ -26,10 +26,14 @@ ActiveRecord::Schema.define(version: 20171206165111) do
     t.string   "name"
     t.string   "address"
     t.integer  "capacity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.time     "open_hour"
     t.time     "close_hour"
+    t.string   "neighborhood"
+    t.string   "price_range"
+    t.text     "menu"
+    t.text     "summary"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +41,7 @@ ActiveRecord::Schema.define(version: 20171206165111) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "points"
   end
 
 end
