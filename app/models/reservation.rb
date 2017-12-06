@@ -20,7 +20,7 @@ class Reservation < ApplicationRecord
   end
 
   def within_open_hours
-    if (self.time_slot > self.restaurant.open_hour) && (self.time_slot < self.restaurant.close_hour)
+    if (self.time_slot.strftime("%H%M").to_i > self.restaurant.open_hour.strftime("%H%M").to_i) && (self.time_slot.strftime("%H%M").to_i < self.restaurant.close_hour.strftime("%H%M").to_i)
       return true
     else
       errors.add(:time_slot,"Sorry,the restaurant isn't open at that time.")
@@ -31,8 +31,8 @@ class Reservation < ApplicationRecord
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
-
     current_reservations = Reservation.where( "time_slot > ? & time_slot < ? ",lower , upper )
+
 
     current_reservations.each do |r|
       seat_available -= r.party_size
