@@ -1,9 +1,15 @@
+<% if @restaurants.blank? %>
+  <h4>There are no restaurants containing the term <%= params[:search] %>.</h4>
+<% end %>
+
+
 
 <% if current_user %>
   <h2>Good Afternoon <%=current_user.email %>!</h2>
 <% else %>
   <h2>Good Afternoon!</h2>
 <% end %>
+
 
 <p>Where would you like to dine tonight?</p>
 

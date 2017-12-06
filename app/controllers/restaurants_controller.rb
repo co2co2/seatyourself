@@ -1,8 +1,22 @@
 class RestaurantsController < ApplicationController
 
+    # def task_params
+    #   params.require(:task).permit(:name, :complete, :due_date, :term)
+    # end
+
+
     def index
-      @restaurants = Restaurant.all
+      # @restaurants = Restaurant.all
+      if params[:search]
+        @restaurants = Restaurant.search(params[:search]).order("created_at DESC")
+
+      else
+        @restaurants = Restaurant.all.order("created_at DESC")
+      end
     end
+
+
+
 
     def new
       @restaurant = Restaurant.new

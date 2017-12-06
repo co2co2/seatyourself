@@ -8,12 +8,27 @@
 </head>
 <body>
 <header>
+
+  <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+
+
+
+
+
+
   <% if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
   <% end %>
   <% if flash[:alert] %>
     <p class="alert"><%= flash[:alert] %></p>
   <% end %>
+
+
+
 
   <nav>
     <ul>
