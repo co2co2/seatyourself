@@ -15,20 +15,20 @@
 <% end %>
   <p>
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: 'w3-input w3-padding-16' %>
   </p>
 
   <p>
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.text_field :password, class: 'w3-input w3-padding-16' %>
   </p>
 
   <p>
     <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation %>
+    <%= f.text_field :password_confirmation, class: 'w3-input w3-padding-16' %>
   </p>
 
   <p>
-  <%= f.submit "Create Yourself" %>
+  <%= f.submit "Create Yourself", class: "w3-button w3-light-grey w3-section" %>
 </p>
 <% end %>
