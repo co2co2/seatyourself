@@ -1,17 +1,27 @@
-<% if @restaurants.blank? %>
-  <h4>There are no restaurants containing the term <%= params[:search] %>.</h4>
-<% end %>
+<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px;color:white">
+  <img class=“w3-image” src="http://www.w3schools.com/w3images/london2.jpg" alt="London" width="1500" height=“700”>
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+    <% if current_user %>
+    <h2 class="w3-xxlarge">Good Afternoon <%=current_user.email %>!</h2>
+    <% else %>
+    <h2 class="w3-xxlarge">Good Afternoon!</h2>
+    <% end %>
+  </div>
+  <div class="w3-display-topleft w3-padding-large">
+    <p>Where would you like to dine tonight?</p>
+
+    <% if @restaurants.blank? %>
+    <h4>There are no restaurants containing the term <%= params[:search] %>.</h4>
+    <% end %>
+
+    <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
+    <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+</header>
 
 
-
-<% if current_user %>
-  <h2>Good Afternoon <%=current_user.email %>!</h2>
-<% else %>
-  <h2>Good Afternoon!</h2>
-<% end %>
-
-
-<p>Where would you like to dine tonight?</p>
 
 <h1>Restaurants</h1>
 
