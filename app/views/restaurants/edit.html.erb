@@ -1,0 +1,4 @@
+<h1>Edit Your Restaurant</h1>
+
+<%= render  'form_restaurant',  restaurant: @restaurant %>
+<p> <%= button_to "Delete my Restaurant", restaurant_path(@restaurant), method: :delete, data: {confirm: "Are you sure you want to delete this Restaurant?"}%> </p>

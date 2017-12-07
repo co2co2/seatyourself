@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207022033) do
+ActiveRecord::Schema.define(version: 20171207031338) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171207022033) do
     t.text     "menu"
     t.text     "summary"
     t.string   "pic_url"
+    t.integer  "owner"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20171207022033) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "points"
   end
 
 end

@@ -42,6 +42,17 @@
       Date <%= i+1 %>: <%= r.date %> <br><%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
       <% end  %>
     <% end %>
+    <br>
+    Owner
+    <% if current_user && (@restaurant.owner == current_user.id) %>
+     <p>All Reservations</p>
+      <%@restaurant.reservations.each_with_index do |r,i|%></h3>
+        <% if r.id != nil %>
+         <%= i+1 %>: <%= r.date %> <%= r.time_slot %> <%= r.party_size %> <br>
+         <% end %>
+      <% end  %>
+    <p> <%= button_to "Edit my Restaurant", edit_restaurant_path(@restaurant), :method => 'get'%> </p>
+    <% end %>
   </div>
   <div class="w3-container w3-padding-64" id="reservation">
     <h4 class="w3-center">New Reservation</h4>
