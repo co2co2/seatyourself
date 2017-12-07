@@ -1,11 +1,12 @@
 
 <br>
-<% if current_user && (@restaurant.owner = current_user.id) %>
+<% unless current_user && (@restaurant.owner != current_user.id) %>
+ <p> <%= button_to "Edit my Restaurant", edit_restaurant_path, :method => 'get'%> </p>
+ <p>All Reservations</p>
   <%@restaurant.reservations.each_with_index do |r,i|%></h3>
     <% if r.id != nil %>
      <%= i+1 %>: <%= r.date %> <%= r.time_slot %> <%= r.party_size %> <br>
      <% end %>
-     <p> <%= button_to "Edit my Restaurant", edit_restaurant_path, :method => 'get'%> </p>
   <% end  %>
 <% else %>
 <% end %>

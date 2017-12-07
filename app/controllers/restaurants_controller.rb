@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-
+  before_action :ensure_logged_in,except: [:show, :index ]
   before_action :ensure_user_owns_restaurant, only: [:edit, :update, :destroy]
 
   def ensure_user_owns_restaurant
@@ -20,8 +20,6 @@ class RestaurantsController < ApplicationController
       end
     end
 
-
-
     def new
       @restaurant = Restaurant.new
     end
@@ -31,8 +29,8 @@ class RestaurantsController < ApplicationController
       @restaurant.name = params[:restaurant][:name]
       @restaurant.address = params[:restaurant][:address]
       @restaurant.capacity = params[:restaurant][:capacity]
-      @restaurant.open_hour = params[:restaurant][:open_hour]
-      @restaurant.close_hour = params[:restaurant][:close_hour]
+      @restaurant.open_hour = params[:restaurant][:open_hour].in_time_zone('EST')
+      @restaurant.close_hour = params[:restaurant][:close_hour].in_time_zone('EST')
       @restaurant.neighborhood = params[:restaurant][:neighborhood]
       @restaurant.price_range = params[:restaurant][:price_range]
       @restaurant.menu = params[:restaurant][:menu]
