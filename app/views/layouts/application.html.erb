@@ -37,6 +37,7 @@
       <a href="/" class="w3-bar-item w3-button">Seat Yourself</a>
       <div class="w3-right w3-hide-small">
         <%= link_to "Home", root_path, class: "w3-bar-item w3-button" %>
+        <%= link_to "Restaurants", '/#restaurants', class: "w3-bar-item w3-button" %>
         <% if current_user %>
           <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button" %>
             <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button" %>
@@ -50,6 +51,8 @@
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-top w3-center" style="margin-top:46px">
+    <%= link_to "Home", root_path, class: "w3-bar-item w3-button w3-padding-large" %>
+    <%= link_to "Restaurants", '/#restaurants', class: "w3-bar-item w3-button w3-padding-large" %>
     <% if current_user %>
       <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button w3-padding-large" %>
         <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button w3-padding-large" %>
