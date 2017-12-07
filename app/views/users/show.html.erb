@@ -1,5 +1,5 @@
 
-<h1> This is You, ID: </h1>
+<h1> This is <%= current_user.email %> </h1>
 
 <% @user.reservations.each_with_index do |r,i|%>
 
