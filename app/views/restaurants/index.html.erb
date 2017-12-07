@@ -7,7 +7,7 @@
     <h2 class="w3-xxlarge">Good Afternoon!</h2>
     <% end %>
   </div>
-  <div class="w3-display-topleft w3-padding-large">
+  <div class="w3-display-topleft w3-padding-large search">
     <p>Where would you like to dine tonight?</p>
 
     <% if @restaurants.blank? %>
@@ -22,10 +22,11 @@
 </header>
 
 
+<div class="w3-container w3-padding-64">
+  <h1>Restaurants</h1>
 
-<h1>Restaurants</h1>
+  <% @restaurants.each do |restaurant| %>
+  <h3><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></h3>
 
-<% @restaurants.each do |restaurant| %>
-<h3><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></h3>
-
-<%end %>
+  <% end %>
+</div>
