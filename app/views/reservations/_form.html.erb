@@ -15,20 +15,20 @@
     <div class="field">
     <p>
       <%= f.label :date %><br />
-      <%= f.date_field :date, min:Date.today %>
+      <%= f.date_field :date, min:Date.today, class:"w3-input w3-padding-16" %>
     </p>
     <p>
-      <%= f.label :time_slot %><br />
-      <%= f.select :time_slot, @restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, prompt: 'Select a time' %>
+      <%= f.label :time_slot, "Time" %><br />
+      <%= f.select :time_slot, @restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, prompt: 'Select a time', class:"w3-input w3-padding-16" %>
     </p>
     <p>
       <%= f.label :party_size %><br />
-      <%= f.number_field :party_size, min: 1 %>
+      <%= f.number_field :party_size, min: 1, class:"w3-input w3-padding-16" %>
     </p>
 
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.button class: "w3-button w3-light-grey w3-section" %>
     </div>
 
 

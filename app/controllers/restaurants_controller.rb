@@ -70,7 +70,7 @@ class RestaurantsController < ApplicationController
       @restaurant.owner = current_user.id
       if @restaurant.save
         flash[:notice] = "restaurant is successfully updated!"
-        redirect_to restaurants_url
+        redirect_to restaurant_url(@restaurant)
       else
         render :new
       end

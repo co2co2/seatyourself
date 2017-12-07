@@ -1,43 +1,50 @@
-<% if @reservation.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+<section class="w3-content" style="max-width:1100px">
+  <div class="w3-container w3-padding-64">
+    <h5 class="w3-center">Edit Reservations</h5>
 
-  <ul>
-    <% @reservation.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+  <% if @reservation.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-<%= form_for [@restaurant, @reservation] do |f| %>
+    <ul>
+      <% @reservation.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
-  <div class="field">
-  <p>
-    <%= f.label :date %><br />
-    <%= f.date_field :date, min:Date.today %>
-  </p>
-  <p>
-    <%= f.label :time_slot %><br />
-    <%= @reservation.time_slot.in_time_zone('EST').strftime('%I:%M %p') %><br>
+  <%= form_for [@restaurant, @reservation] do |f| %>
 
-    <%= f.select :time_slot, @restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, prompt: 'Select a time' %>
+    <div class="field">
+    <p>
+      <%= f.label :date %><br />
+      <%= f.date_field :date, min:Date.today, class:"w3-input w3-padding-16" %>
+    </p>
+    <p>
+      <%= f.label :time_slot, "Reserved time" %><br />
+      <%= @reservation.time_slot.in_time_zone('EST').strftime('%I:%M %p') %>
+      <br><br>
+      <%= f.select :time_slot, @restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, prompt: 'Select a time', class:"w3-input w3-padding-16" %>
 
-  </p>
-  <p>
-    <%= f.label :party_size %><br />
-    <%= f.number_field :party_size, min: 1 %>
-  </p>
+    </p>
+    <p>
+      <%= f.label :party_size %><br />
+      <%= f.number_field :party_size, min: 1, class:"w3-input w3-padding-16" %>
+    </p>
+
+    </div>
+    <div class="actions">
+      <%= f.button class: "w3-button w3-light-grey w3-section" %>
+    </div>
+
+
+  <% end %>
+
+  <% if @reservation.errors.any? == false %>
+
+  <%= link_to("Delete", restaurant_reservation_path(@restaurant, @reservation), method: :delete, data: {confirm: "Are you sure you want to delete this restaurant?"})%>
+  <%end %>
 
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-
-<% end %>
-
-<% if @reservation.errors.any? == false %>
-
-<%= link_to("Delete", restaurant_reservation_path(@restaurant, @reservation), method: :delete, data: {confirm: "Are you sure you want to delete this restaurant?"})%>
-<%end %>
+</section>
