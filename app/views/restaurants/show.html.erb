@@ -1,5 +1,14 @@
 
 <br>
+<% if current_user && (@restaurant.owner = current_user.id) %>
+  <%@restaurant.reservations.each_with_index do |r,i|%></h3>
+    <% if r.id != nil %>
+     <%= i+1 %>: <%= r.date %> <%= r.time_slot %> <%= r.party_size %> <br>
+     <% end %>
+     <p> <%= button_to "Edit my Restaurant", edit_restaurant_path, :method => 'get'%> </p>
+  <% end  %>
+<% else %>
+<% end %>
 <h1><%= @restaurant.name %></h1>
 <p><%= @restaurant.address %></p>
 <p>Neighborhood: <%= @restaurant.neighborhood %></p><br>
@@ -8,19 +17,8 @@
 <p>Summary: <%= @restaurant.summary %></p><br>
 
 
-<h4>From <%= @restaurant.open_hour.in_time_zone('EST').strftime('%I:%M %p') %> to <%= @restaurant.close_hour.in_time_zone('EST').strftime('%I:%M %p') %> everyday!</h4>
-
-<br>
-
-<h3><%@restaurant.reservations.each_with_index do |r,i|%></h3>
-<% if r.id != nil %>
-
-Date <%= i+1 %>: <%= r.date %> <br><%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
-
-<% end  %>
-
-<br>
-<% end %>
+<h4>From <%= @restaurant.open_hour.in_time_zone('EST').strftime('%I:%M %p') %> to <%= @restaurant.close_hour.in_time_zone('EST').strftime('%I:%M %p') %> everyday!
+</h4>
 
 <h4>New Reservation</h4>
 

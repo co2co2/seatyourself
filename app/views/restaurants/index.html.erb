@@ -28,4 +28,6 @@
 <% @restaurants.each do |restaurant| %>
 <h3><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></h3>
 
+
 <%end %>
+<p> <%= button_to "Add a restaurant", new_restaurant_path, :method => 'get'%> </p>
