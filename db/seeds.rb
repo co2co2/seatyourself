@@ -9,21 +9,79 @@ User.destroy_all
 Restaurant.destroy_all
 Reservation.destroy_all
 
-User.create(email: 'teng.ty@gmail.com', password: '1234')
-User.create(email: "coolguy@sunglasses.com", password: "1234")
-User.create(email: "lordofdarkness@dungeon.co", password: "1234")
-User.create(email: "flyingthroughtheclouds@bluebird.com", password: "1234")
-User.create(email: "ourfinesthour@timer.co", password: "1234")
-User.create(email: "itsmunchintime@eatme.com", password: "1234")
+tyler = User.create(email: 'teng.ty@gmail.com', password: '1234')
+coolguy = User.create(email: "coolguy@sunglasses.com", password: "1234")
+lordo = User.create(email: "lordofdarkness@dungeon.co", password: "1234")
+flying = User.create(email: "flyingthroughtheclouds@bluebird.com", password: "1234")
+ourfinest = User.create(email: "ourfinesthour@timer.co", password: "1234")
+munchin = User.create(email: "itsmunchintime@eatme.com", password: "1234")
 
 
-Restaurant.create(name: "Polar Bear Creamery", address: "123 Cold Rd", capacity: 50, open_hour: Time.parse("11:30"), close_hour: Time.parse("18:30"))
-Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
-Restaurant.create(name: "McDouble", address: "200 Glass Ave", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
-Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
-Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"))
+Restaurant.create(name: "Polar Bear Creamery", address: "123 Cold Rd", capacity: 50, open_hour: Time.parse("11:30"), close_hour: Time.parse("18:30"), neighborhood: "Snowy Peaks", price_range: "$$$",
+menu:
+"Cream Popsicle
+Milk Fudge
+Polar Ice Cream
+Fried Ice Cream
+Silk Smoothie
+Silky Angel Puff Cake",
+summary: "Cool foods to delight the tongue, our menu items slide smoothly down your throat.",
+pic_url: "")
+
+Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Misty Mountains", price_range: "$$$",
+menu:
+"Salted Cockroach
+Mildew Stew
+Roasted Rat
+Misty Waters Pale Ale",
+summary:
+"For a musky, different atmosphere, you’ll get the best in cavern food.",
+pic_url: "")
+
+Restaurant.create(name: "McDouble", address: "200 Glass Ave", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Everywhere", price_range: "$",
+menu:
+"Baburger
+Chachicken
+Dadouble Baburger
+Mamilkshake
+Fafafafries",
+summary:
+"Yummy burger joint, you know what we're about.",
+pic_url: "")
+
+Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Dirt Mud Hamlet", price_range: "$$$$",
+menu:
+"Caviar Fillet Mignon
+La Tereau French Vineyard, Refined French Wine
+Swiss Salad
+Duck Couscous",
+summary:
+"A more refined dining experience",
+pic_url: "")
+
+Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Down Town", price_range: "$$",
+menu:
+"Steak
+Cheeseburger
+Ribs
+Turducken
+Blended Chicken Smoothie",
+summary:
+"You like meat, we got meat, come… eat meat.",
+pic_url: "")
+
+Restaurant.create(name: "Teng Dynasty", address: "100 Noodle Blvd", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "China Town", price_range: "$$",
+menu:
+"Soup Dumpling
+Dump Dumpling
+Fried Dumpling
+Magic Dragon Tea",
+summary:
+"You've never tried real dumplings until you've tried our dumplings.",
+pic_url: "")
 
 
+#Reservations
 Reservation.create(user_id: 13, restaurant_id: 1, party_size: 2, date: Date.new(2017,12,10), time_slot: Time.now - 2.hours)
 Reservation.create(user_id: 13, restaurant_id: 2, party_size: 5, date: Date.new(2017,12,20), time_slot: Time.now - 1.hours)
 Reservation.create(user_id: 13, restaurant_id: 1, party_size: 2, date: Date.new(2017,12,25), time_slot: Time.now - 5.hours)

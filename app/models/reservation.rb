@@ -9,6 +9,8 @@ class Reservation < ApplicationRecord
   validate :restaurant_at_capacity
   validate :within_open_hours
 
+
+
   def time_cannot_be_earlier_than_now
     if self.time_slot > Time.now
       return true
@@ -18,12 +20,13 @@ class Reservation < ApplicationRecord
   end
 
   def within_open_hours
-    if (self.time_slot.strftime("%H%M").to_i > self.restaurant.open_hour.strftime("%H%M").to_i) && (self.time_slot.strftime("%H%M").to_i < self.restaurant.close_hour.strftime("%H%M").to_i)
+    puts self.time_slot.in_time_zone('EST').strftime("%H%M").to_i
+    if (self.time_slot.in_time_zone('EST').strftime("%H%M").to_i > self.restaurant.open_hour.in_time_zone('EST').strftime("%H%M").to_i) && (self.time_slot.in_time_zone('EST').strftime("%H%M").to_i < self.restaurant.close_hour.in_time_zone('EST').strftime("%H%M").to_i)
       return true
     else
       errors.add(:time_slot,"Sorry,the restaurant isn't open at that time.")
     end
-  end
+  end 
 
   def seat_left
     puts "***********"
