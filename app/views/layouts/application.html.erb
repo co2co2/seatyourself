@@ -5,43 +5,51 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1,h2,h3,h5,h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+}
+p, h4 {
+  font-family: "Playfair Display";
+  letter-spacing: 1px;
+}
+</style>
 </head>
 <body>
 <header>
-
-  <%= form_tag(restaurants_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Restaurants" %>
-      <%= submit_tag "Search", :name => nil %>
-  <% end %>
-
   <% if flash[:notice] %>
+  <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
     <p class="notice"><%= flash[:notice] %></p>
+  </div>
   <% end %>
   <% if flash[:alert] %>
+  <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
     <p class="alert"><%= flash[:alert] %></p>
+  </div>
   <% end %>
 
-
-
-
-  <nav>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
+<div class="w3-top">
+  <nav class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="/" class="w3-bar-item w3-button">Seat Yourself</a>
+    <div class="w3-right w3-hide-small">
+      <%= link_to "Home", root_path, class: "w3-bar-item w3-button" %>
       <% if current_user %>
-        <li><%= link_to "My Reservations", user_path("current") %></li>
-        <li>
-          <%= link_to "Sign Out", session_path("current"), method: :delete %>
-        </li>
-
+        <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button" %>
+          <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button" %>
       <% else %>
-        <li><%= link_to "Sign In", new_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_path %></li>
+      <%= link_to "Sign In", new_session_path, class: "w3-bar-item w3-button"%>
+      <%= link_to "Sign Up", new_user_path, class: "w3-bar-item w3-button" %>
       <% end %>
-    </ul>
+    </div>
   </nav>
+</div>
 
 </header>
-
+<main>
 <%= yield %>
+</main>
 </body>
 </html>
