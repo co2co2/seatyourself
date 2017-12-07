@@ -3,7 +3,7 @@
       background-position: center;
       background-size: cover;
       background-image: url(<%= @restaurant.pic_url %>);
-      height: 50vh;
+      height: 60vh;
   }
 </style>
 
@@ -28,7 +28,7 @@
     <p><b>Neighborhood:</b> <%= @restaurant.neighborhood %></p>
     <p><b>Price Range:</b> <%= @restaurant.price_range %></p>
     <p><b>Open hours: </b>Everyday from <%= @restaurant.open_hour.in_time_zone('EST').strftime('%I:%M %p') %> to <%= @restaurant.close_hour.in_time_zone('EST').strftime('%I:%M %p') %>.</p>
-    <p><b>Address:</b><%= @restaurant.address %></p>
+    <p><b>Address: </b><%= @restaurant.address %></p>
     <div class="w3-center">
       <img src="https://www.w3schools.com/w3images/tablesetting2.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600" height="750"><br>
       <h4>Menu</h4>

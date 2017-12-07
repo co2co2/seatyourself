@@ -19,37 +19,62 @@
   </style>
 </head>
 <body>
-<header>
-  <% if flash[:notice] %>
-  <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
-    <p class="notice"><%= flash[:notice] %></p>
-  </div>
-  <% end %>
-  <% if flash[:alert] %>
-  <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
-    <p class="alert"><%= flash[:alert] %></p>
-  </div>
-  <% end %>
-
-<div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-    <a href="/" class="w3-bar-item w3-button">Seat Yourself</a>
-    <div class="w3-right w3-hide-small">
-      <%= link_to "Home", root_path, class: "w3-bar-item w3-button" %>
-      <% if current_user %>
-        <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button" %>
-          <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button" %>
-      <% else %>
-      <%= link_to "Sign In", new_session_path, class: "w3-bar-item w3-button"%>
-      <%= link_to "Sign Up", new_user_path, class: "w3-bar-item w3-button" %>
-      <% end %>
+  <header>
+    <% if flash[:notice] %>
+    <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
+      <p class="notice"><%= flash[:notice] %></p>
     </div>
-  </nav>
-</div>
+    <% end %>
+    <% if flash[:alert] %>
+    <div class="w3-display-topleft w3-bar w3-xlarge w3-black w3-opacity flash">
+      <p class="alert"><%= flash[:alert] %></p>
+    </div>
+    <% end %>
 
-</header>
-<main>
-<%= yield %>
-</main>
+  <div class="w3-top">
+    <nav class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu">☰</a>
+      <a href="/" class="w3-bar-item w3-button">Seat Yourself</a>
+      <div class="w3-right w3-hide-small">
+        <%= link_to "Home", root_path, class: "w3-bar-item w3-button" %>
+        <% if current_user %>
+          <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button" %>
+            <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button" %>
+        <% else %>
+        <%= link_to "Sign In", new_session_path, class: "w3-bar-item w3-button"%>
+        <%= link_to "Sign Up", new_user_path, class: "w3-bar-item w3-button" %>
+        <% end %>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-top w3-center" style="margin-top:46px">
+    <% if current_user %>
+      <%= link_to "My Reservations", user_path("current"), class: "w3-bar-item w3-button w3-padding-large" %>
+        <%= link_to "Sign Out", session_path("current"), method: :delete, class: "w3-bar-item w3-button w3-padding-large" %>
+    <% else %>
+    <%= link_to "Sign In", new_session_path, class: "w3-bar-item w3-button w3-padding-large"%>
+    <%= link_to "Sign Up", new_user_path, class: "w3-bar-item w3-button w3-padding-large" %>
+    <% end %>
+  </div>
+
+  </header>
+
+  <main>
+  <%= yield %>
+  </main>
+
+  <script>
+  // Used to toggle the menu on small screens when clicking on the menu button
+  function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+  }
+  </script>
 </body>
 </html>

@@ -26,7 +26,7 @@ Fried Ice Cream
 Silk Smoothie
 Silky Angel Puff Cake",
 summary: "Cool foods to delight the tongue, our menu items slide smoothly down your throat.",
-pic_url: "https://www.w3schools.com/w3images/coffeehouse.jpg")
+pic_url: "http://foxthemes.xyz/chicago_pizzeria/wp-content/uploads/2017/03/bg1-5.jpg")
 
 Restaurant.create(name: "Endless Cavern", address: "1 Moria Mn", capacity: 10000, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Misty Mountains", price_range: "$$$",
 menu:
@@ -47,7 +47,7 @@ Mamilkshake
 Fafafafries",
 summary:
 "Yummy burger joint, you know what we're about.",
-pic_url: "https://www.w3schools.com/w3images/coffeehouse.jpg")
+pic_url: "http://foxthemes.xyz/fastfood/wp-content/uploads/2017/03/i2-2.jpg")
 
 Restaurant.create(name: "The Fancy Top Hat", address: "77 Caviar Pl", capacity: 20, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Dirt Mud Hamlet", price_range: "$$$$",
 menu:
@@ -57,7 +57,7 @@ Swiss Salad
 Duck Couscous",
 summary:
 "A more refined dining experience",
-pic_url: "https://www.w3schools.com/w3images/coffeehouse.jpg")
+pic_url: "http://chicago-8565.kxcdn.com/wp-content/uploads/2016/01/home3_bg2.jpg")
 
 Restaurant.create(name: "Grill House", address: "8 Meat Heaven Lane", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "Down Town", price_range: "$$",
 menu:
@@ -68,7 +68,7 @@ Turducken
 Blended Chicken Smoothie",
 summary:
 "You like meat, we got meat, come… eat meat.",
-pic_url: "https://www.w3schools.com/w3images/coffeehouse.jpg")
+pic_url: "http://foxthemes.xyz/chicago_bistro/wp-content/uploads/2017/03/bg1-4.jpg")
 
 Restaurant.create(name: "Teng Dynasty", address: "100 Noodle Blvd", capacity: 100, open_hour: Time.parse("11:30"), close_hour: Time.parse("22:30"), neighborhood: "China Town", price_range: "$$",
 menu:
@@ -78,7 +78,7 @@ Fried Dumpling
 Magic Dragon Tea",
 summary:
 "You've never tried real dumplings until you've tried our dumplings.",
-pic_url: "https://www.w3schools.com/w3images/coffeehouse.jpg")
+pic_url: "http://foxthemes.xyz/chicago_sushi/wp-content/uploads/2017/03/bg4.jpg")
 
 
 #Reservations
