@@ -38,9 +38,9 @@
   </div>
   <div class="w3-center">
     <!-- user's section -->
-    <% if current_user && (@reservation.user_id == current_user.id) %>
+    <% if current_user %>
       <h5>My Booked Reservations</h5>
-      <h3><%current_user.reservations.each_with_index do |r, i|%></h3>
+      <h3><% @restaurant.reservations.where("user_id = ?", current_user.id).each_with_index do |r, i|%></h3>
         <% if r.id != nil %>
         <p>
         <%= (i+1).ordinalize %> reservation: <%= r.date %> AT <%= r.time_slot.in_time_zone('EST').strftime("%I:%M %p") %> for party of <%= r.party_size %><br><%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
