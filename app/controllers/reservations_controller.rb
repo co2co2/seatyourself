@@ -55,8 +55,8 @@ class ReservationsController < ApplicationController
     @reservation.user_id = current_user.id
 
     if @reservation.save
-      flash[:notice] = "Reservation is successfully created!"
-      redirect_to restaurant_path(@restaurant)
+      flash[:notice] = "Reservation is successfully updated!"
+      redirect_to user_path(params[:id])
     else
       render :edit
 
@@ -67,7 +67,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
     flash[:notice] = "Reservation deleted!"
-    redirect_to restaurant_url(params[:restaurant_id])
+    redirect_to user_path(params[:id])
 
   end
 

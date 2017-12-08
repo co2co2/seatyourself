@@ -37,22 +37,28 @@
     </div>
   </div>
   <div class="w3-center">
-    <h5>My Booked Reservations</h5>
-    <h3><%@restaurant.reservations.each_with_index do |r,i|%></h3>
-      <% if r.id != nil %>
-      Date <%= i+1 %>: <%= r.date %> <br><%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
-      <% end  %>
+    <!-- user's section -->
+    <% if current_user && (@reservation.user_id == current_user.id) %>
+      <h5>My Booked Reservations</h5>
+      <h3><%current_user.reservations.each_with_index do |r, i|%></h3>
+        <% if r.id != nil %>
+        <p>
+        <%= (i+1).ordinalize %> reservation: <%= r.date %> AT <%= r.time_slot.in_time_zone('EST').strftime("%I:%M %p") %> for party of <%= r.party_size %><br><%= link_to("Edit", edit_restaurant_reservation_path(@restaurant, r.id)) %>
+        </p>
+        <% end  %>
+      <% end %>
+      <br>
     <% end %>
-    <br>
-    Owner
+    <!-- owner's section -->
     <% if current_user && (@restaurant.owner == current_user.id) %>
+    <h5>Restaurant Admin</h5>
      <p>All Reservations</p>
       <%@restaurant.reservations.each_with_index do |r,i|%></h3>
         <% if r.id != nil %>
-         <%= i+1 %>: <%= r.date %> <%= r.time_slot %> <%= r.party_size %> <br>
+         <%= (i+1).ordinalize %> reservation: <%= r.date %> AT <%= r.time_slot.in_time_zone('EST').strftime("%I:%M %p") %> for party of <%= r.party_size %><br>
          <% end %>
       <% end  %>
-    <p> <%= button_to "Edit my Restaurant", edit_restaurant_path(@restaurant), :method => 'get'%> </p>
+      <p> <%= button_to "Edit my restaurant", edit_restaurant_path(@restaurant), :method => 'get', class: "w3-button w3-light-grey w3-section" %> </p>
     <% end %>
   </div>
   <div class="w3-container w3-padding-64" id="reservation">

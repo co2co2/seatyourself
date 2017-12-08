@@ -38,20 +38,18 @@ class Reservation < ApplicationRecord
 
   def restaurant_at_capacity
     return unless party_size && time_slot
-    #seat left
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
     current_reservations = self.restaurant.reservations.where( "time_slot > ? And time_slot < ? ",lower , upper )
     current_reservations.each do |r|
       seat_available -= r.party_size
-    end
-    return seat_available
-    #restaurant at capacity
-    if self.party_size  <  self.seat_left
-      return true
-    else
-      errors.add(:party_size, "The restaurant is full at that timeslot.")
+
+      if self.party_size  <  seat_available
+        return true
+      else
+        errors.add(:party_size, "The restaurant is full at that timeslot.")
+      end
     end
   end
 
