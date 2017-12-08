@@ -19,16 +19,20 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    date = params[:reservation][:date]
+
     time_slot = params[:reservation][:time_slot]
+    date = params[:reservation][:date]
     @reservation = Reservation.new
     @restaurant = Restaurant.find(params[:restaurant_id])
-    unless time_slot.empty?
-      @reservation.date = date
-      d = Date.parse(date)
-      t = Time.parse(time_slot)
-      @reservation.time_slot = Time.zone.local(d.strftime('%Y'), d.strftime('%m'), d.strftime('%d'), t.strftime('%H'), t.strftime('%M'))
-    end
+
+
+      if !time_slot.empty? && !date.empty?
+        t = Time.parse(time_slot)
+        d = Date.parse(date)
+        @reservation.date = date
+        @reservation.time_slot = Time.zone.local(d.strftime('%Y'), d.strftime('%m'), d.strftime('%d'), t.strftime('%H'), t.strftime('%M'))
+      end
+
 
     @reservation.party_size = params[:reservation][:party_size]
     @reservation.restaurant_id = params[:restaurant_id]
