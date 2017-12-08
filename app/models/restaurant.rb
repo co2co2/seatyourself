@@ -8,8 +8,6 @@ class Restaurant < ApplicationRecord
   end
 
 
-
-
   def timeslots
     restaurant = self
     timeslot = []
