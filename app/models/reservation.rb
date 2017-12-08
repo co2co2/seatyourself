@@ -7,7 +7,7 @@ class Reservation < ApplicationRecord
   validates :party_size, presence: true
   validates :party_size, numericality: {only_integer: true}
 
-  validate :time_cannot_be_earlier_than_now
+  # validate :time_cannot_be_earlier_than_now
   validate :restaurant_at_capacity
   validate :within_open_hours
 
@@ -22,6 +22,13 @@ class Reservation < ApplicationRecord
   end
 
   def within_open_hours
+    return unless time_slot
+    if self.time_slot > Time.now
+      return true
+    else
+      errors.add("You cannot go back in time. ")
+    end
+
     if (self.time_slot.in_time_zone('EST').strftime("%H%M").to_i > self.restaurant.open_hour.in_time_zone('EST').strftime("%H%M").to_i) && (self.time_slot.in_time_zone('EST').strftime("%H%M").to_i < self.restaurant.close_hour.in_time_zone('EST').strftime("%H%M").to_i)
       return true
     else
@@ -29,8 +36,9 @@ class Reservation < ApplicationRecord
     end
   end
 
-  def seat_left
+  def restaurant_at_capacity
     return unless party_size && time_slot
+    #seat left
     seat_available = self.restaurant.capacity
     upper = self.time_slot + 120.minutes
     lower = self.time_slot - 120.minutes
@@ -39,10 +47,7 @@ class Reservation < ApplicationRecord
       seat_available -= r.party_size
     end
     return seat_available
-  end
-
-  def restaurant_at_capacity
-    return unless party_size
+    #restaurant at capacity
     if self.party_size  <  self.seat_left
       return true
     else

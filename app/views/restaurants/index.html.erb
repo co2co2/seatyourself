@@ -29,5 +29,6 @@
   <h3><%= link_to("#{restaurant.name}", restaurant_path(restaurant)) %></h3>
 
   <% end %>
-  <p> <%= button_to "Add a restaurant", new_restaurant_path, :method => 'get'%> </p>
+  <br>
+  <%= button_to "Add a restaurant", new_restaurant_path, :method => 'get', class: "w3-button w3-light-grey w3-section" %>
 </div>

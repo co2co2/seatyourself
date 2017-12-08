@@ -38,7 +38,7 @@ class RestaurantsController < ApplicationController
       @restaurant.pic_url = params[:restaurant][:pic_url]
       @restaurant.owner = current_user.id
       if @restaurant.save
-        flash[:notice] = "restaurant is successfully created!"
+        flash[:notice] = "Restaurant is successfully created!"
         redirect_to restaurants_url
       else
       render :new
@@ -69,7 +69,7 @@ class RestaurantsController < ApplicationController
       @restaurant.pic_url = params[:restaurant][:pic_url]
       @restaurant.owner = current_user.id
       if @restaurant.save
-        flash[:notice] = "restaurant is successfully updated!"
+        flash[:notice] = "Restaurant is successfully updated!"
         redirect_to restaurant_url(@restaurant)
       else
         render :new
@@ -80,7 +80,7 @@ class RestaurantsController < ApplicationController
     def destroy
       @restaurant = Restaurant.find(params[:id])
       @restaurant.destroy
-      flash[:notice] = "restaurants deleted!"
+      flash[:notice] = "Restaurant deleted!"
       redirect_to root_url
 
     end

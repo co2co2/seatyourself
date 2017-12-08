@@ -13,53 +13,53 @@
   <p>
 
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: "McDouble", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_field :address, placeholder: "123 Richmond st. w", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :capacity %><br />
-    <%= f.number_field :capacity %>
+    <%= f.number_field :capacity, placeholder: "60", min: 1, class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :neighborhood %><br />
-    <%= f.text_field :neighborhood %>
+    <%= f.text_field :neighborhood, placeholder: "The Annex", class:"w3-input w3-padding-16" %>
   </p>
 
   <p>
     <%= f.label :price_range %><br />
-    <%= f.text_field :price_range %>
+    <%= f.text_field :price_range, placeholder: "$$", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :menu %><br />
-    <%= f.text_area :menu %>
+    <%= f.text_area :menu, placeholder: "Burgers, Fries, McShrimps", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :summary %><br />
-    <%= f.text_area :summary %>
+    <%= f.text_area :summary, placeholder: "Yummy burger joint, you know what we're about.", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :pic_url %><br />
-    <%= f.text_field :pic_url %>
+    <%= f.url_field :pic_url, placeholder: "http://", class:"w3-input w3-padding-16" %>
   </p>
   <p>
     <%= f.label :open_hour %><br />
-    <%= f.time_field :open_hour %>
+    <%= f.time_field :open_hour, class:"w3-input w3-padding-16" %>
   </p>
 
 
   <p>
     <%= f.label :close_hour %><br />
-    <%= f.time_field :close_hour %>
+    <%= f.time_field :close_hour, class:"w3-input w3-padding-16" %>
   </p>
 
 
 
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "w3-button w3-light-grey w3-section" %>
   </div>
 
 <% end %>
