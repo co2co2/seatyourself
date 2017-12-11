@@ -25,7 +25,13 @@
       <%= f.label :time_slot, "Reserved time" %><br />
       <%= @reservation.time_slot.in_time_zone('EST').strftime('%I:%M %p') %>
       <br><br>
-      <%= f.select :time_slot, @restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, prompt: 'Select a time', class:"w3-input w3-padding-16" %>
+      <% year = @restaurant.open_hour.strftime('%Y')
+        month = @restaurant.open_hour.strftime('%m')
+        day = @restaurant.open_hour.strftime('%d')
+        hour = @reservation.time_slot.to_time.utc.strftime('%H')
+        minute = @reservation.time_slot.to_time.utc.strftime('%M')
+       %>
+      <%= f.select :time_slot, options_for_select(@restaurant.timeslots.collect {|t| [t.in_time_zone('EST').strftime("%I:%M %p"), t]}, Time.zone.local(year,month,day,hour,minute).utc), html: {selected: true}, class:"w3-input w3-padding-16" %>
 
     </p>
     <p>
